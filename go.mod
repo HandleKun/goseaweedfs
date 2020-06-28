@@ -1,4 +1,4 @@
-module github.com/linxGnu/goseaweedfs
+module github.com/HandleKun/goseaweedfs
 
 go 1.14
 
