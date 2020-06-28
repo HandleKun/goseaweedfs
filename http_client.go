@@ -106,6 +106,8 @@ func (c *httpClient) download(url string) (filename string, reader io.ReadCloser
 
 		// drain and close body
 		//drainAndClose(r.Body)
+
+		reader = r.Body
 	}
 
 	return
