@@ -84,7 +84,7 @@ func (c *httpClient) delete(url string) (statusCode int, err error) {
 	return
 }
 
-func (c *httpClient) download(url string, callback func(io.Reader) error) (filename string, err error) {
+func (c *httpClient) download(url string) (filename string, reader io.ReadCloser, err error) {
 	r, err := c.client.Get(url)
 	if err == nil {
 		if r.StatusCode != http.StatusOK {
@@ -102,10 +102,10 @@ func (c *httpClient) download(url string, callback func(io.Reader) error) (filen
 		}
 
 		// execute callback
-		err = callback(r.Body)
+		//err = callback(r.Body)
 
 		// drain and close body
-		drainAndClose(r.Body)
+		//drainAndClose(r.Body)
 	}
 
 	return

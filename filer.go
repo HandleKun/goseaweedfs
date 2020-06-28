@@ -89,8 +89,8 @@ func (f *Filer) Get(path string, args url.Values, header map[string]string) (dat
 }
 
 // Download a file.
-func (f *Filer) Download(path string, args url.Values, callback func(io.Reader) error) (err error) {
-	_, err = f.client.download(encodeURI(*f.base, path, args), callback)
+func (f *Filer) Download(path string, args url.Values) (reader io.ReadCloser, err error) {
+	_, reader, err = f.client.download(encodeURI(*f.base, path, args))
 	return
 }
 

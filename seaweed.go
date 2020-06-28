@@ -514,10 +514,10 @@ func (c *Seaweed) uploadManifest(f *FilePart, manifest *ChunkManifest) (err erro
 }
 
 // Download file by id.
-func (c *Seaweed) Download(fileID string, args url.Values, callback func(io.Reader) error) (fileName string, err error) {
+func (c *Seaweed) Download(fileID string, args url.Values) (fileName string, reader io.ReadCloser, err error) {
 	fileURL, err := c.LookupFileID(fileID, args, true)
 	if err == nil {
-		fileName, err = c.client.download(fileURL, callback)
+		fileName, reader, err = c.client.download(fileURL)
 	}
 	return
 }
